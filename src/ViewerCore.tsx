@@ -149,6 +149,7 @@ export default (props: ViewerProps) => {
   const viewerCore = React.useRef<HTMLDivElement>(null);
   const init = React.useRef(false);
   const currentLoadIndex = React.useRef(0);
+  const pinchDistance = React.useRef(0);
   const [ state, dispatch ] = React.useReducer<(s: any, a: any) => ViewerCoreState>(reducer, initialState);
 
   React.useEffect(() => {
@@ -470,11 +471,9 @@ export default (props: ViewerProps) => {
       document[funcName]('keydown', handleKeydown, true);
     }
     if (viewerCore.current) {
-      viewerCore.current[funcName](
-        'wheel',
-        handleMouseScroll,
-        false,
-      );
+      viewerCore.current[funcName]('wheel', handleMouseScroll, false);
+      viewerCore.current[funcName]('touchstart', handleTouchStart, false);
+      viewerCore.current[funcName]('touchmove', handleTouchMove, false);
     }
   }
 
@@ -530,6 +529,36 @@ export default (props: ViewerProps) => {
       e.stopPropagation();
     }
   }
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+      pinchDistance.current = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) + Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (state.loading) {
+      return;
+    }
+    if (e.touches.length === 2 && pinchDistance.current > 0) {
+      const currentPinch = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) + Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
+      let x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      let y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      if (props.container) {
+        const containerRect = props.container.getBoundingClientRect();
+        x -= containerRect.left;
+        y -= containerRect.top;
+      }
+      const scale = Math.abs(currentPinch - pinchDistance.current) / 100;
+      if (currentPinch > pinchDistance.current) {
+        handleZoom( x, y, 1, scale);
+      }
+      if (currentPinch < pinchDistance.current) {
+        handleZoom( x, y, -1, scale);
+      }
+      pinchDistance.current = currentPinch;
+    }
+  };
 
   function handleMouseScroll(e) {
     if (disableMouseZoom) {
@@ -588,6 +617,8 @@ export default (props: ViewerProps) => {
     } else {
       let directX = state.scaleX > 0 ? 1 : -1;
       let directY = state.scaleY > 0 ? 1 : -1;
+      //scaleX = state.scaleX * (1 + scale * direct * directX);
+      //scaleY = state.scaleY * (1 + scale * direct * directY);
       scaleX = state.scaleX + scale * direct * directX;
       scaleY = state.scaleY + scale * direct * directY;
       if (typeof props.maxScale !== 'undefined') {
