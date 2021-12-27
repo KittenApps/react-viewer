@@ -44,8 +44,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: #373737;
-    background-color: rgba(55, 55, 55, 0.6);
+    background-color: rgba(0, 0, 0, 0.75);
     height: 100%;
     filter: alpha(opacity=50);
     z-index: @zIndex;
@@ -115,15 +114,16 @@
     margin: 0 20px;
     margin-bottom: 6px;
     opacity: .8;
-    color: #ccc;
-    font-size: 15px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
   }
 
   &-showTotal {
     float: right;
   }
 
-  @toolbarHeight: 28px;
+  @toolbarHeight: 36px;
 
   &-toolbar {
     overflow: hidden;
@@ -138,7 +138,7 @@
     border-radius: @toolbarHeight;
     margin-right: 3px;
     cursor: pointer;
-    line-height: 28px;
+    line-height: 36px;
   }
 
   &-toolbar li:hover {
