@@ -98,6 +98,7 @@ I'm sorry, ssr is not currently supported in `3.x`, it will be fixed in `4.0`.
 | onChange | (activeImage: [ImageDecorator](#imagedecorator), index: number) => void | - | callback when image change | false |
 | loop         | boolean      |  true   | whether enable image loop | false |
 | disableMouseZoom   | boolean      |  false   | whether disable mouse zoom | false |
+| disablePinchZoom   | boolean      |  false   | whether disable the pinch zoom touch gesture | false |
 | downloadInNewWindow | boolean | false | whether to download in a new window | false |
 | className   | string    |  -  | customized CSS class | false |
 | showTotal   | boolean    |  true  | whether to display the total number and range | false |

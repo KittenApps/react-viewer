@@ -67,6 +67,7 @@ export default (props: ViewerProps) => {
     defaultScale = 1,
     loop = true,
     disableMouseZoom = false,
+    disablePinchZoom = false,
     downloadable = false,
     noImgDetails = false,
     noToolbar = false,
@@ -531,12 +532,18 @@ export default (props: ViewerProps) => {
   }
 
   const handleTouchStart = (e) => {
+    if (disablePinchZoom) {
+      return;
+    }
     if (e.touches.length === 2) {
       pinchDistance.current = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) + Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
     }
   };
 
   const handleTouchMove = (e) => {
+    if (disablePinchZoom) {
+      return;
+    }
     if (state.loading) {
       return;
     }

@@ -101,6 +101,9 @@ interface ViewerProps {
   // disable mouse zoom
   disableMouseZoom?: boolean;
 
+  // disable the pinch zoom touch gesture
+  disablePinchZoom?: boolean;
+
   // whether to download in a new window
   downloadInNewWindow?: boolean;
 
