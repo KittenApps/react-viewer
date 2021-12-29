@@ -107,9 +107,6 @@ interface ViewerProps {
   // disable the pinch zoom touch gesture
   disablePinchZoom?: boolean;
 
-  // whether to download in a new window
-  downloadInNewWindow?: boolean;
-
   className?: string;
 
   // whether to display the total number and range

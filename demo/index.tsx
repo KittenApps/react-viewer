@@ -86,10 +86,6 @@ const optionData: OptionData[] = [{
   type: 'boolean',
   value: false,
 }, {
-  key: 'downloadInNewWindow',
-  type: 'boolean',
-  value: false,
-}, {
   key: 'showTotal',
   type: 'boolean',
 }];

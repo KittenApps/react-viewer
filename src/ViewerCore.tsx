@@ -365,11 +365,12 @@ export default (props: ViewerProps) => {
   function handleDownload() {
     const activeImage = getActiveImage();
     if (activeImage.downloadUrl) {
-      if (props.downloadInNewWindow) {
-        window.open(activeImage.downloadUrl, '_blank');
-      } else {
-        location.href = activeImage.downloadUrl;
-      }
+      const link = document.createElement('a');
+      link.href = activeImage.downloadUrl;
+      link.download = link.href.substring(link.href.lastIndexOf('/') + 1);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   }
 
