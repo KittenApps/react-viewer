@@ -77,6 +77,9 @@ interface ViewerProps {
   // zoom speed
   zoomSpeed?: number;
 
+  // pinch zoom speed
+  pinchSpeed?: number;
+
   // default image size
   defaultSize?: ViewerImageSize;
 

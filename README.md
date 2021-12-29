@@ -89,6 +89,7 @@ I'm sorry, ssr is not currently supported in `3.x`, it will be fixed in `4.0`.
 | changeable   | boolean      |  true   | wheather to show change button  | false |
 | customToolbar | (defaultToolbarConfigs: [ToolbarConfig](#toolbarconfig)[]) => ToolbarConfig[] | - | customer toolbar | false |
 | zoomSpeed    | number       | 0.05    | zoom speed | false |
+| pinchSpeed    | number       | 0.0015    | pinch zoom speed | false |
 | defaultSize    | [ViewerImageSize](#viewerimagesize) | - | default image size | false |
 | defaultImg    | [viewerdefaultimg](#viewerimagesize) | - | if load img failed, show default img | false |
 | disableKeyboardSupport | boolean | false | disable keyboard support | false |

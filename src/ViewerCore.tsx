@@ -61,6 +61,7 @@ export default (props: ViewerProps) => {
     changeable = true,
     customToolbar = (toolbars) => toolbars,
     zoomSpeed = .05,
+    pinchSpeed = 0.0015,
     disableKeyboardSupport = false,
     noResetZoomAfterChange = false,
     noLimitInitializationSize = false,
@@ -556,7 +557,7 @@ export default (props: ViewerProps) => {
         x -= containerRect.left;
         y -= containerRect.top;
       }
-      const scale = Math.abs(currentPinch - pinchDistance.current) / 100;
+      const scale = Math.abs(currentPinch - pinchDistance.current) * pinchSpeed;
       if (currentPinch > pinchDistance.current) {
         handleZoom( x, y, 1, scale);
       }
