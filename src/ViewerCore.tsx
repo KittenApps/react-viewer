@@ -604,8 +604,10 @@ export default (props: ViewerProps) => {
 
   function handleZoom(targetX, targetY, direct, scale) {
     let imgCenterXY = getImageCenterXY();
-    let diffX = targetX - imgCenterXY.x;
-    let diffY = targetY - imgCenterXY.y;
+    const maxX = state.width * state.scaleX / 2;
+    const maxY = state.height * state.scaleY / 2;
+    let diffX = Math.min(Math.max(targetX - imgCenterXY.x, -maxX), maxX);
+    let diffY =  Math.min(Math.max(targetY - imgCenterXY.y, -maxY), maxY);
     let top = 0;
     let left = 0;
     let width = 0;
