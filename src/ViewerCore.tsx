@@ -367,6 +367,7 @@ export default (props: ViewerProps) => {
     if (activeImage.downloadUrl) {
       const link = document.createElement('a');
       link.href = activeImage.downloadUrl;
+      link.target = '_blank';
       link.download = link.href.substring(link.href.lastIndexOf('/') + 1);
       document.body.appendChild(link);
       link.click();
