@@ -539,7 +539,8 @@ export default (props: ViewerProps) => {
       return;
     }
     if (e.touches.length === 2) {
-      pinchDistance.current = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) + Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
+      pinchDistance.current = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) +
+                                        Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
     }
   };
 
@@ -551,7 +552,8 @@ export default (props: ViewerProps) => {
       return;
     }
     if (e.touches.length === 2 && pinchDistance.current > 0) {
-      const currentPinch = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) + Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
+      const currentPinch = Math.sqrt(Math.pow(e.touches[0].clientX - e.touches[1].clientX, 2) +
+                                     Math.pow(e.touches[0].clientY - e.touches[1].clientY, 2));
       let x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
       let y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
       if (props.container) {

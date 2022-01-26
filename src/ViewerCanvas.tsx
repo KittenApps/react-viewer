@@ -133,7 +133,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     if (e.touches.length === 0) {
       isPinch.current = false;
     }
-  }
+  };
 
   const handleMouseMove = (e) => {
     if (isMouseDown.current) {
