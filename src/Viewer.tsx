@@ -8,7 +8,7 @@ export default (props: ViewerProps) => {
   const [ container, setContainer ] = React.useState(props.container);
   const [ init, setInit ] = React.useState(false);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     document.body.appendChild(defaultContainer.current);
   }, []);
 

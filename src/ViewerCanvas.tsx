@@ -153,7 +153,7 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
     if (remove) {
       funcName = 'removeEventListener';
     }
-    window[funcName]('resize', handleResize, false);
+    window[funcName]('resize', handleResize, { passive: true });
   }
 
   function bindEvent(remove?: boolean) {
@@ -162,12 +162,12 @@ export default function ViewerCanvas(props: ViewerCanvasProps) {
       funcName = 'removeEventListener';
     }
 
-    document[funcName]('click', handleMouseUp, false);
-    document[funcName]('mousemove', handleMouseMove, false);
+    document[funcName]('click', handleMouseUp, { passive: true });
+    document[funcName]('mousemove', handleMouseMove, { passive: true });
     document[funcName]('touchstart', handleTouchStart, { passive: false });
-    document[funcName]('touchmove', handleTouchMove, false);
-    document[funcName]('touchend', handleTouchEnd, false);
-    document[funcName]('touchcancel', handleTouchEnd, false);
+    document[funcName]('touchmove', handleTouchMove, { passive: true });
+    document[funcName]('touchend', handleTouchEnd, { passive: true });
+    document[funcName]('touchcancel', handleTouchEnd, { passive: true });
   }
 
   let imgStyle: React.CSSProperties = {

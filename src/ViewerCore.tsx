@@ -162,7 +162,7 @@ export default (props: ViewerProps) => {
     };
   }, []);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     containerSize.current = setContainerWidthHeight();
   }, [props.container]);
 
@@ -184,7 +184,7 @@ export default (props: ViewerProps) => {
     };
   });
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (visible) {
       if (!props.container) {
         document.body.style.overflow = 'hidden';
@@ -472,12 +472,12 @@ export default (props: ViewerProps) => {
       funcName = 'removeEventListener';
     }
     if (!disableKeyboardSupport) {
-      document[funcName]('keydown', handleKeydown, true);
+      document[funcName]('keydown', handleKeydown, { passive: false, capture: true });
     }
     if (viewerCore.current) {
-      viewerCore.current[funcName]('wheel', handleMouseScroll, false);
-      viewerCore.current[funcName]('touchstart', handleTouchStart, false);
-      viewerCore.current[funcName]('touchmove', handleTouchMove, false);
+      viewerCore.current[funcName]('wheel', handleMouseScroll, { passive: false });
+      viewerCore.current[funcName]('touchstart', handleTouchStart, { passive: true });
+      viewerCore.current[funcName]('touchmove', handleTouchMove, { passive: true });
     }
   }
 
